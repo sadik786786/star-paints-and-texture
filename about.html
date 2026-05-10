@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Star Paints & Texture – Premium Wall Texture Manufacturer</title>
+    <meta name="description" content="ISO 9001:2015 certified manufacturer of wall textures, primer, distemper, and exterior emulsions. 10+ years of excellence in weather-resistant & decorative finishes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23c47a2e'/%3E%3Cpath d='M50 20L58 42L82 44L63 58L70 80L50 66L30 80L37 58L18 44L42 42L50 20Z' fill='%23FFF9F0'/%3E%3C/svg%3E">
+    <style>
+        /* additional about page specific tweaks */
+        /* Hero section now uses video background */
+        .about-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(105deg, rgba(0, 0, 0, 0.264) 0%, rgba(0, 0, 0, 0.286) 70%);
+            z-index: 1;
+        }
+        .about-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .about-stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 48px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-md);
+        }
+        .product-badge-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+            gap: 16px;
+            margin: 30px 0;
+        }
+        .product-badge {
+            background: #fef4e8;
+            padding: 12px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--primary-dark);
+        }
+        .icon-feature {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .icon-feature i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            width: 40px;
+        }
+        /* Ensure text is readable on video */
+        .about-hero h1, .about-hero p {
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="nav-container">
+        <div class="logo">
+           <a href="index.html"><img class="logo-img" src="img/logo.png" alt="Star Paints Logo"></a>
+        </div>
+        <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- About Hero with Video Background (infinite loop) -->
+    <section class="about-hero">
+        <!-- Video element - looping, muted, autoplay, playsinline -->
+        <video class="hero-video-bg" autoplay muted loop playsinline>
+            <source src="img/17224715-uhd_3840_2160_30fps.mp4" type="video/mp4">
+            <!-- Fallback image if video fails -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1>About Star Paints & Texture</h1>
+            <p style="font-size: 1.2rem; max-width: 650px; margin-top: 16px;">manufacturer of premium wall textures, protective coatings & decorative finishes. Transforming walls since 2014.</p>
+        </div>
+    </section>
+
+    <div class="container" style="margin-top: -30px;">
+        <div class="about-stats">
+            <div><span class="stat-number">10+</span><br>Years of Excellence</div>
+            <div><span class="stat-number">500+</span><br>Completed Projects</div>
+            <div><span class="stat-number">120+</span><br>Authorized Dealers</div>
+            <div><span class="stat-number">50k+</span><br>sq.ft. Manufacturing</div>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 60px 0;">
+        <!-- Business Overview -->
+        <div class="section-title">
+            <h2>Business Overview</h2>
+            <p>Engineered for Indian climates, trusted by architects & builders</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 50px;">
+            <div style="flex: 1.5;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">Star Paints & Texture is a dedicated <strong>manufacturer of high-performance wall finishes</strong>, including decorative textures, industrial primers, premium distemper, and exterior emulsions. Our products are designed for both interior and exterior applications, combining aesthetic appeal with long-lasting protection.</p>
+                <p>Our manufacturing facility spans over 50,000 sq.ft., equipped with automated production lines and a dedicated quality control lab. Every batch undergoes rigorous testing for weather resistance, adhesion, and color consistency.</p>
+                <div class="product-badge-list" style="margin-top: 30px;">
+                    <span class="product-badge">Wall Textures</span>
+                    <span class="product-badge">Paint Textures</span>
+                    <span class="product-badge">Primer</span>
+                    <span class="product-badge">Distemper</span>
+                    <span class="product-badge">Exterior Emulsion</span>
+                    <span class="product-badge">Waterproof Coatings</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- USP Section (detailed) -->
+        <div class="section-title" style="margin-top: 70px;">
+            <h2>Why Architects & Contractors Choose Us</h2>
+            <p>Unmatched durability, easy application, and eco-friendly chemistry</p>
+        </div>
+        <div class="usp-section">
+            <div class="usp-card"><i class="fas fa-cloud-rain"></i><h4>Weather Resistant</h4><p>Withstands heavy rain, humidity & UV radiation</p></div>
+            <div class="usp-card"><i class="fas fa-tachometer-alt"></i><h4>Water Repellent</h4><p>Advanced hydrophobic formula prevents dampness</p></div>
+            <div class="usp-card"><i class="fas fa-sun"></i><h4>UV Resistant</h4><p>Colors stay vibrant for years without fading</p></div>
+            <div class="usp-card"><i class="fas fa-broom"></i><h4>Low Maintenance</h4><p>Dust-resistant & easy to clean</p></div>
+            <div class="usp-card"><i class="fas fa-chart-line"></i><h4>Crack Resistant</h4><p>Elastic properties prevent hairline cracks</p></div>
+            <div class="usp-card"><i class="fas fa-leaf"></i><h4>Environment Friendly</h4><p>Low VOC, non-toxic & safe for homes</p></div>
+            <div class="usp-card"><i class="fas fa-hourglass-half"></i><h4>Long-Lasting Finish</h4><p>10+ years of protective performance</p></div>
+            <div class="usp-card"><i class="fas fa-shield-alt"></i><h4>Anti-Fungal</h4><p>Resists algae & fungus growth on walls</p></div>
+        </div>
+
+        <!-- Manufacturing & Quality -->
+        <div style="background: linear-gradient(120deg, #fef5ea, #fff9f0); border-radius: 48px; padding: 48px 40px; margin: 70px 0;">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+                <div style="flex: 1;">
+                    <i class="fas fa-microchip" style="font-size: 3rem; color: var(--primary);"></i>
+                    <h3 style="margin: 15px 0 10px;">State-of-the-art Manufacturing</h3>
+                    <p>Our automated production line ensures batch-to-batch consistency. We use premium raw materials sourced from certified suppliers. Every product is tested for:</p>
+                    <ul style="margin-top: 16px; list-style: none;">
+                        <li>✓ Adhesion strength & crack resistance</li>
+                        <li>✓ Weather simulation (UV, moisture, thermal cycling)</li>
+                        <li>✓ pH & viscosity stability</li>
+                        <li>✓ VOC & environmental safety</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to action -->
+        <div class="section-title">
+            <h2>Partner With India’s Growing Texture Brand</h2>
+            <p>Join our dealer network or request a site consultation</p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+                <button class="btn btn-outline" onclick="location.href='contact.html'">Book a Meeting</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img class="footer-logo" src="img/logo.png" alt="Star">
+                <p>Premium wall textures & protective coatings.</p>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                    <a href="tel:+919974831383"><p><i class="fas fa-phone-alt"></i> +91 997 483 1383 </p></a>
+                    <a href="mailto:starpainttexture@gmail.com"><p><i class="fas fa-envelope"></i> starpainttexture@gmail.com</p></a>
+                    <a href="https://maps.google.com/?q=K.B.+Logistics+Gadh,+Road+Chadotar,+Palanpur,+Gujarat" target="_blank">
+                        <p><i class="fas fa-map-marker-alt"></i>  K.B. Logistics Gadh, Road Chadotar, Palanpur, Gujarat</p>
+                    </a>
+                </div>
+        </div>
+        <div class="footer-bottom">© 2026 Star Paints & Texture — Decorative & Protective Wall Finishes | Leading Wall Texture Manufacturer</div>
+    </div>
+</footer>
+
+<script>
+    // mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    if(mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    }
+    function showToast(msg) {
+        const toast = document.getElementById('toastMsg');
+        if(toast) {
+            toast.textContent = msg;
+            toast.style.opacity = "1";
+            setTimeout(() => toast.style.opacity = "0", 2500);
+        }
+    }
+    // simple product card click handlers already use location.href
+    // ensure any other buttons
+    const quoteBtns = document.querySelectorAll('.btn-primary');
+    if(quoteBtns.length) {
+        // just sample for sample request
+    }
+</script>
+</body>
+</html>

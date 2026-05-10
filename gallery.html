@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gallery | Star Paints & Texture – Premium Wall Finishes</title>
+    <meta name="description" content="Explore our stunning gallery of premium wall textures, rustic finishes, dholpuri, granules, exterior coatings & real project inspirations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23c47a2e'/%3E%3Cpath d='M50 20L58 42L82 44L63 58L70 80L50 66L30 80L37 58L18 44L42 42L50 20Z' fill='%23FFF9F0'/%3E%3C/svg%3E">
+    <style>
+        /* ----- GLOBAL STYLES (matching About page) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf7;
+            color: #2c2418;
+            line-height: 1.5;
+        }
+        :root {
+            --primary: #c47a2e;
+            --primary-dark: #9b5e1f;
+            --shadow-md: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+        /* Hero Section with Video (same as About page) */
+        .gallery-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(105deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.45) 100%);
+            z-index: 1;
+        }
+        .gallery-hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+        .gallery-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto 0;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+        }
+        @media (max-width: 768px) {
+            .gallery-hero h1 { font-size: 2.5rem; }
+            .gallery-hero p { font-size: 1rem; }
+        }
+        /* Container & Gallery Grid - fully responsive */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 3rem;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            background: #f0e9df;
+            cursor: pointer;
+            transition: transform 0.35s ease, box-shadow 0.35s;
+            box-shadow: 0 15px 25px -12px rgba(0,0,0,0.2);
+            aspect-ratio: 4 / 3;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 35px -15px rgba(0,0,0,0.3);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        /* Lightbox (full image only) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 85vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            animation: fadeZoom 0.25s ease;
+        }
+        @keyframes fadeZoom {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0,0,0,0.6);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .close-lightbox:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            transition: all 0.2s;
+        }
+        .lightbox-nav:hover {
+            background: var(--primary);
+        }
+        .prev-btn { left: 25px; }
+        .next-btn { right: 25px; }
+        @media (max-width: 640px) {
+            .lightbox-nav { width: 36px; height: 36px; font-size: 1.2rem; }
+            .prev-btn { left: 10px; }
+            .next-btn { right: 10px; }
+            .close-lightbox { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.8rem; }
+            .gallery-grid {
+                gap: 1rem;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img class="logo-img" src="img/logo.png" alt="Star Paints Logo" onerror="this.src='https://placehold.co/180x60/f5f0e8/c47a2e?text=STAR+PAINTS'"></a>
+            </div>
+            <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Image Gallery - only images, fully responsive -->
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox" id="closeLightbox"><i class="fas fa-times"></i></span>
+        <div class="lightbox-nav prev-btn" id="prevImage"><i class="fas fa-chevron-left"></i></div>
+        <img id="lightboxImg" class="lightbox-img" alt="Wall texture enlarged view">
+        <div class="lightbox-nav next-btn" id="nextImage"><i class="fas fa-chevron-right"></i></div>
+    </div>
+
+    <div id="toastMsg" class="toast">✓ Full resolution</div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img class="footer-logo" src="img/logo.png" alt="Star">
+                <p>Premium wall textures & protective coatings.</p>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                    <a href="tel:+919974831383"><p><i class="fas fa-phone-alt"></i> +91 997 483 1383 </p></a>
+                    <a href="mailto:starpainttexture@gmail.com"><p><i class="fas fa-envelope"></i> starpainttexture@gmail.com</p></a>
+                    <a href="https://maps.google.com/?q=K.B.+Logistics+Gadh,+Road+Chadotar,+Palanpur,+Gujarat" target="_blank">
+                        <p><i class="fas fa-map-marker-alt"></i>  K.B. Logistics Gadh, Road Chadotar, Palanpur, Gujarat</p>
+                    </a>
+                </div>
+        </div>
+        <div class="footer-bottom">© 2026 Star Paints & Texture — Decorative & Protective Wall Finishes | Leading Wall Texture Manufacturer</div>
+    </div>
+</footer>
+
+    <script>
+        // High-resolution aesthetic wall texture images (only images, no text)
+        const galleryImages = [
+            "img/rustic.jpg",
+            "img/dholpur-texture-500x500.webp",
+            "https://images.unsplash.com/photo-1582063289852-62e3ba2747f8?w=900&auto=format",
+            "img/dholpuri.jpg",
+            "img/painting_room.jpg",
+            "img/pitti.jpg",
+            "img/asian.png",
+            "img/Rollercoat.webp",
+            "img/painting.jpg",
+            "img/side wall.jpg",
+            "img/rustic1.jpg",
+            "img/emulsion.png",
+        ];
+
+        const uniqueImages = [...new Map(galleryImages.map((url, idx) => [url, idx])).keys()];
+        const finalImageSet = uniqueImages.slice(0, 24);
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            if (!grid) return;
+            grid.innerHTML = finalImageSet.map((url, index) => `
+                <div class="gallery-item" data-index="${index}">
+                    <img src="${url}" alt="Premium wall texture" loading="lazy">
+                </div>
+            `).join('');
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const idx = parseInt(item.getAttribute('data-index'));
+                    if (!isNaN(idx)) openLightbox(idx);
+                });
+            });
+        }
+
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        let isLightboxActive = false;
+
+        function openLightbox(index) {
+            currentIndex = Math.min(Math.max(0, index), finalImageSet.length - 1);
+            lightboxImg.src = finalImageSet[currentIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            isLightboxActive = true;
+            const toast = document.getElementById('toastMsg');
+            if (toast) {
+                toast.textContent = "✦ Full resolution image";
+                toast.style.opacity = "1";
+                setTimeout(() => toast.style.opacity = "0", 1500);
+            }
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            isLightboxActive = false;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % finalImageSet.length;
+            lightboxImg.src = finalImageSet[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + finalImageSet.length) % finalImageSet.length;
+            lightboxImg.src = finalImageSet[currentIndex];
+        }
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+        }
+
+        // Lightbox controls
+        document.getElementById('closeLightbox')?.addEventListener('click', closeLightbox);
+        document.getElementById('prevImage')?.addEventListener('click', prevImage);
+        document.getElementById('nextImage')?.addEventListener('click', nextImage);
+        lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        window.addEventListener('keydown', (e) => {
+            if (!isLightboxActive) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        renderGallery();
+    </script>
+</body>
+</html>

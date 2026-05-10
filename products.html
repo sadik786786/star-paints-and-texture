@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Star Paints & Texture | Premium Wall Texture Manufacturer</title>
+    <meta name="description" content="ISO 9001:2015 certified manufacturer of premium wall textures, waterproof coatings, and decorative finishes. Serving India with excellence since 2014.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c47a2e'%3E%3Cpath d='M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z'/%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf7;
+            color: #2c2418;
+            line-height: 1.5;
+        }
+
+
+        /* Container & product grid */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #2c2418;
+            margin-bottom: 0.5rem;
+        }
+        .section-title p {
+            color: #6b5a48;
+            font-size: 1.1rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+        }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            font-size: 1.4rem;
+            color: #c47a2e;
+            margin-bottom: 0.25rem;
+        }
+        .product-code {
+            font-size: 0.8rem;
+            color: #8b7a66;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        .product-info p {
+            color: #4a3e2f;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .card-hover-btn {
+            color: #c47a2e;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .product-card:hover .card-hover-btn {
+            gap: 10px;
+        }
+
+        /* USP Section */
+        .usp-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            background: #f8f3ea;
+            border-radius: 48px;
+            padding: 2.5rem 2rem;
+            margin-top: 1rem;
+        }
+        .usp-card {
+            text-align: center;
+            padding: 1rem;
+        }
+        .usp-card i {
+            font-size: 2.4rem;
+            color: #c47a2e;
+            margin-bottom: 1rem;
+        }
+        .usp-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .usp-card p {
+            font-size: 0.85rem;
+            color: #5e4e3a;
+        }
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c5e2e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.25s;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* MODAL STYLES - Detail Box */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .modal-content {
+            background: #fffdf9;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 32px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+            animation: fadeSlideUp 0.25s ease;
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-close {
+            position: sticky;
+            top: 15px;
+            right: 20px;
+            float: right;
+            background: #2c2418;
+            color: white;
+            border: none;
+            font-size: 1.6rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 15px 20px 0 0;
+            z-index: 10;
+        }
+        .modal-close:hover {
+            background: #c47a2e;
+            transform: scale(1.05);
+        }
+        .modal-body {
+            padding: 1.8rem 2rem 2.5rem;
+            clear: both;
+        }
+        .modal-body img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 24px;
+            margin-bottom: 1.5rem;
+        }
+        .modal-body h2 {
+            font-size: 2rem;
+            color: #c47a2e;
+            margin-bottom: 0.25rem;
+        }
+        .modal-code {
+            font-size: 0.9rem;
+            background: #f0e9de;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: #5e4e3a;
+            margin: 0.5rem 0 1rem;
+        }
+        .modal-desc {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+            color: #2c2418;
+        }
+        .detail-section {
+            margin-bottom: 1.8rem;
+            border-left: 3px solid #c47a2e;
+            padding-left: 1rem;
+        }
+        .detail-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: #2c2418;
+        }
+        .features-list, .surface-list, .method-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+        .features-list li, .surface-list li, .method-list li {
+            background: #f4efe6;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+        .tech-table {
+            background: #faf7f0;
+            border-radius: 20px;
+            padding: 1rem;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tech-table td {
+            padding: 0.6rem;
+            border-bottom: 1px solid #e2d8ca;
+        }
+        .tech-table td:first-child {
+            font-weight: 700;
+            width: 40%;
+        }
+        .btn-book {
+            background-color: #c47a2e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 40px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .btn-book:hover {
+            background-color: #a55d1a;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #c47a2e;
+            color: #c47a2e;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #c47a2e20;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .book-meeting-fab {
+            text-align: center;
+            margin: 2rem 0 0;
+        }
+
+        /* No hero section */
+        .no-hero {
+            display: block;
+        }
+        /* Responsive */
+        @media (max-width: 640px) {
+            .modal-body {
+                padding: 1rem;
+            }
+            .modal-close {
+                top: 5px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img class="logo-img" src="img/logo.png" alt="Star Paints Logo"></a>
+            </div>
+            <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero section REMOVED as requested -->
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Textures & Coatings</h2>
+                <p>Engineered for Indian weather, loved by architects | 6 specialized finishes</p>
+            </div>
+            <div class="product-grid" id="homeProductsGrid"></div>
+
+            <div class="usp-section">
+                <div class="usp-card">
+                    <i class="fas fa-sun"></i>
+                    <h4>Weather Resistant</h4>
+                    <p>UV & thermal protection, no fading</p>
+                </div>
+                <div class="usp-card">
+                    <i class="fas fa-broom"></i>
+                    <h4>Low Maintenance</h4>
+                    <p>Easy to clean, stain resistant</p>
+                </div>
+                <div class="usp-card">
+                    <i class="fas fa-tint"></i>
+                    <h4>100% Waterproof</h4>
+                    <p>Advanced moisture barrier</p>
+                </div>
+                <div class="usp-card">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Eco-Friendly</h4>
+                    <p>Low VOC, safe for interiors</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img class="footer-logo" src="img/logo.png" alt="Star">
+                <p>Premium wall textures & protective coatings.</p>
+            </div>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="products.html">Products</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-contact">
+                    <a href="tel:+919974831383"><p><i class="fas fa-phone-alt"></i> +91 997 483 1383 </p></a>
+                    <a href="mailto:starpainttexture@gmail.com"><p><i class="fas fa-envelope"></i> starpainttexture@gmail.com</p></a>
+                    <a href="https://maps.google.com/?q=K.B.+Logistics+Gadh,+Road+Chadotar,+Palanpur,+Gujarat" target="_blank">
+                        <p><i class="fas fa-map-marker-alt"></i>  K.B. Logistics Gadh, Road Chadotar, Palanpur, Gujarat</p>
+                    </a>
+                </div>
+        </div>
+        <div class="footer-bottom">© 2026 Star Paints & Texture — Decorative & Protective Wall Finishes | Leading Wall Texture Manufacturer</div>
+    </div>
+</footer>
+
+    <div id="toastMsg" class="toast">✓ Success</div>
+
+    <!-- MODAL BOX (Detail Box) -->
+    <div id="productModal" class="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- dynamic content injected -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --------------------------------------------------------------
+        // COMPLETE PRODUCT DATA (based on brochure)
+        // --------------------------------------------------------------
+        const productsList = [
+            {
+                id: 1,
+                name: "Rustic Texture",
+                category: "Exterior Texture",
+                productCode: "SPT-1001",
+                shortDesc: "Long-lasting acrylic modified resin finish, hides cracks & weatherproof.",
+                fullDesc: "A durable textured finish made using advanced acrylic modified resin. Engineered for Indian exteriors, it offers superior protection against UV, rain, and thermal variations while allowing trapped moisture to escape.",
+                features: ["Hides cracks and uneven surfaces", "Tough textured finish – low maintenance", "UV resistant & protects walls from rain", "Releases trapped moisture", "Resists fungus and algae"],
+                suitableSurfaces: ["Exterior walls", "Cement plaster", "Gypsum board", "Woodwork"],
+                applicationMethods: ["Stainless steel trowel", "Fiber trowel", "Spatula"],
+                techData: { "Coating System": "Single/Two Coat", "Surface Dry Time": "4 Hours", "Hard Dry Time": "7 Days", "Adhesion": "Excellent", "Biological Resistance": "Resistant to algae & fungi" },
+                img: "img/rustic.jpg",
+                recommendedFor: "Villas, Hotels, Commercial complexes, Stadiums"
+            },
+            {
+                id: 2,
+                name: "Dholpuri Texture",
+                category: "Antique Finish",
+                productCode: "SPT-1002",
+                shortDesc: "Premium antique stone & rough-cast effect, grooved seamless patterns.",
+                fullDesc: "Achieve a majestic antique stone look with Dholpuri Texture. Ideal for prestigious buildings, this finish replicates natural stone and rough-cast effects with crack-hiding properties.",
+                features: ["Antique stone look & grooved patterns", "Crack hiding & UV resistance", "Long durability", "Moisture release support", "Fungus & algae resistance"],
+                suitableSurfaces: ["Interior & exterior walls", "Cement plaster", "Gypsum board", "Woodwork"],
+                applicationMethods: ["Trowel", "Spatula", "Texture roller"],
+                techData: { "Coating System": "Two Coat", "Surface Dry Time": "4-5 Hours", "Hard Dry Time": "7 Days", "Weather Resistance": "Superior" },
+                img: "img/dholpur-texture-500x500.webp",
+                recommendedFor: "Hotels, Museums, Heritage buildings, Villas"
+            },
+            {
+                id: 3,
+                name: "Roller Coat Texture",
+                category: "Silicone Acrylic",
+                productCode: "SPT-1003",
+                shortDesc: "Weatherproof silicone acrylic coating, vapor permeable & energy-saving.",
+                fullDesc: "High-performance silicone acrylic coating that provides climatic resistance, mold protection, and energy-saving properties. Odorless, non-flammable and eco-friendly.",
+                features: ["Climatic resistance", "Mold & algae protection", "Acid & frost resistance", "Energy-saving properties", "Odorless & non-flammable"],
+                suitableSurfaces: ["Exterior walls", "High-diffusion plasters", "Premium buildings"],
+                applicationMethods: ["Roller", "Spray gun", "Brush"],
+                techData: { "Vapor Permeability": "High", "UV Stability": "Excellent", "Color Options": "Customizable" },
+                img: "img/Rollercoat.webp",
+                recommendedFor: "Commercial complexes, Offices, Hospitals"
+            },
+            {
+                id: 4,
+                name: "Granules Texture",
+                category: "Decorative Granular",
+                productCode: "SPT:1027",
+                shortDesc: "Stylish granular finish with strong adhesion and crack resistance.",
+                fullDesc: "Modern decorative granular wall finish that delivers a premium rugged appearance. Excellent adhesion, weather resistance, and easy application for feature walls.",
+                features: ["Strong adhesion & crack resistant", "Durable finish & weather resistant", "Easy application", "Premium rugged appearance"],
+                suitableSurfaces: ["Feature walls", "Homes", "Offices", "Commercial spaces"],
+                applicationMethods: ["Trowel", "Spray", "Roller"],
+                techData: { "Particle Size": "Fine to Medium", "Coverage": "1.2-1.5 kg/sq.m", "Washability": "Excellent" },
+                img: "img/granules.jpg",
+                recommendedFor: "Living rooms, Lobbies, Showrooms"
+            },
+            {
+                id: 5,
+                name: "Water-Based Primer",
+                category: "Primer",
+                productCode: "SPT-1005",
+                shortDesc: "Deep penetration primer for superior adhesion and uniform base.",
+                fullDesc: "High-bonding water-based acrylic primer that prepares surfaces for textured coatings, ensuring long-lasting finish and better coverage.",
+                features: ["Strong adhesion", "Better coverage", "Smooth base coat", "Enhances texture finish", "Long-lasting performance"],
+                suitableSurfaces: ["Cement plaster", "POP", "Gypsum board", "Brickwork", "Concrete"],
+                applicationMethods: ["Brush", "Roller", "Spray"],
+                techData: { "Drying Time": "2-3 hours", "Application": "1-2 coats", "Base Type": "Water-based acrylic" },
+                img: "img/primer.png",
+                recommendedFor: "Before applying any texture / paint"
+            },
+            {
+                id: 7,
+                name: "Exterior Emulsion",
+                category: "Exterior Paint",
+                productCode: "SPT-1007",
+                shortDesc: "High-performance emulsion for harsh outdoor conditions.",
+                fullDesc: "Advanced exterior paint offering unmatched weather resistance, UV protection, and fade resistance. Protects against cracking and mildew.",
+                features: ["Weather resistance & UV protection", "Fade resistance", "Crack & mildew resistance", "Easy application"],
+                suitableSurfaces: ["Concrete", "Brick", "Stone", "Exterior wood"],
+                applicationMethods: ["Brush", "Roller", "Airless Spray"],
+                techData: { "Finish": "Satin/Matte", "Coverage": "8-10 sqm/ltr", "Life Expectancy": "6-8 years" },
+                img: "img/emulsion.png",
+                recommendedFor: "Houses, Fences, Gates, Outdoor structures"
+            }
+        ];
+
+        // Render product cards (all 7)
+        function renderProductGrid() {
+            const container = document.getElementById('homeProductsGrid');
+            if (!container) return;
+            container.innerHTML = productsList.map(p => `
+                <div class="product-card" data-product-id="${p.id}">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/e8e0d0/664422?text=${p.name.replace(/ /g,'+')}'">
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <p class="product-code">${p.productCode}</p>
+                        <p>${p.shortDesc.substring(0, 70)}...</p>
+                        <div class="card-hover-btn">View Details →</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Attach click event for modal (detail box open)
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const prodId = parseInt(card.getAttribute('data-product-id'));
+                    const product = productsList.find(p => p.id === prodId);
+                    if (product) {
+                        openProductModal(product);
+                    }
+                });
+            });
+        }
+
+        // Open modal with full product details
+        function openProductModal(product) {
+            const modal = document.getElementById('productModal');
+            const modalBody = document.getElementById('modalBody');
+            if (!modal || !modalBody) return;
+
+            // Build features HTML
+            const featuresHtml = `<ul class="features-list">${product.features.map(f => `<li><i class="fas fa-check-circle" style="color:#c47a2e; font-size:0.7rem;"></i> ${f}</li>`).join('')}</ul>`;
+            const surfacesHtml = `<ul class="surface-list">${product.suitableSurfaces.map(s => `<li>${s}</li>`).join('')}</ul>`;
+            const methodsHtml = `<ul class="method-list">${product.applicationMethods.map(m => `<li>${m}</li>`).join('')}</ul>`;
+            
+            let techHtml = `<table class="tech-table">`;
+            for (const [key, val] of Object.entries(product.techData)) {
+                techHtml += `<tr><td>${key}</td><td>${val}</td></tr>`;
+            }
+            techHtml += `</table>`;
+
+            const advHtml = `<div class="detail-section"><h4>✨ Special Advantages</h4><ul class="features-list"><li>Custom texture designs possible</li><li>High-quality raw materials (natural crushed stone / imported additives)</li><li>Cost-effective maintenance</li><li>Strong R&D support & competitive pricing</li><li>Low VOC & eco-friendly</li></ul></div>`;
+
+            modalBody.innerHTML = `
+                <img src="${product.img}" alt="${product.name}" onerror="this.src='https://placehold.co/800x400/e8e0d0/664422?text=${product.name}'">
+                <h2>${product.name}</h2>
+                <div class="modal-code">📦 ${product.productCode} | ${product.category}</div>
+                <p class="modal-desc">${product.fullDesc}</p>
+                <div class="detail-section"><h4>🔧 Key Features</h4>${featuresHtml}</div>
+                <div class="detail-section"><h4>🏗️ Suitable Surfaces</h4>${surfacesHtml}</div>
+                <div class="detail-section"><h4>🛠️ Application Methods</h4>${methodsHtml}</div>                <div class="detail-section"><h4>📊 Technical Data</h4>${techHtml}</div>
+                <div class="detail-section"><h4>🏆 Recommended For</h4><p style="font-weight:500;">${product.recommendedFor}</p></div>
+                ${advHtml}
+                <div style="margin-top: 1.5rem; text-align:center;">
+                    <a href="contact.html" class="btn-book"><i class="fas fa-calendar-alt"></i> Book a Meeting</a>
+                </div>
+            `;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            if (toast) {
+                toast.textContent = msg;
+                toast.style.opacity = "1";
+                setTimeout(() => toast.style.opacity = "0", 2800);
+            }
+        }
+
+        // Book meeting buttons
+        function initMeetingButtons() {
+            const bookBtns = [
+                document.getElementById('homeBookMeeting'),
+                document.getElementById('floatingBookMeeting')
+            ];
+            bookBtns.forEach(btn => {
+                if (btn) btn.addEventListener('click', () => {
+                    showToast("📅 Meeting request sent! We'll schedule a call shortly.");
+                });
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+        }
+
+        // Close modal on outside click or close button
+        document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('productModal');
+            if (e.target === modal) closeModal();
+        });
+
+        // Initialize all
+        renderProductGrid();
+        initMeetingButtons();
+    </script>
+</body>
+</html>
