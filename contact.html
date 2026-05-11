@@ -169,6 +169,7 @@
             font-size: 1.1rem;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             cursor: pointer;
             transition: 0.2s;
@@ -215,6 +216,10 @@
             gap: 12px;
             flex-wrap: wrap;
         }
+        .address-block a {
+            text-decoration: none;
+            color: inherit;
+        }
         .contact-block a {
             color: var(--primary-dark);
             text-decoration: none;
@@ -237,19 +242,11 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            margin-top: 0.5rem;
         }
         .btn-outline-call:hover {
             background: var(--primary);
             color: white;
-        }
-
-        /* XML NOTE */
-        .seo-note {
-            background: #fef5e8;
-            border-radius: 28px;
-            padding: 1.6rem;
-            text-align: center;
-            margin-top: 1.5rem;
         }
 
         /* FOOTER */
@@ -295,10 +292,83 @@
             margin-left: auto;
             margin-right: auto;
         }
-        @media (max-width: 680px) {
-            .sitemap-container { padding: 0 1.2rem; }
-            .sitemap-hero h1 { font-size: 2rem; }
-            .location-header { flex-direction: column; align-items: flex-start; }
+
+        /* -----------------------------------------
+           MOBILE RESPONSIVE TWEAKS 
+           (Everything smaller & tighter on mobile)
+        ----------------------------------------- */
+        @media (max-width: 768px) {
+            .sitemap-container { 
+                padding: 0 1rem; 
+                margin: 1.5rem auto; 
+            }
+            
+            /* Shrink Location Card */
+            .location-card {
+                padding: 1.2rem;
+                border-radius: 20px;
+                margin: 1rem 0;
+            }
+            .location-header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            .location-header h3 {
+                font-size: 1.3rem; /* Smaller heading */
+            }
+
+            /* Shrink Call Button & make it full width */
+            .call-btn {
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 0.7rem 1.2rem;
+            }
+            .call-btn i {
+                font-size: 1rem;
+            }
+
+            /* Smaller Map */
+            .map-placeholder {
+                height: 200px;
+                border-radius: 16px;
+                margin: 1rem 0;
+            }
+
+            /* Tighter gap & smaller block padding */
+            .address-details {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 0.5rem;
+            }
+            .address-block, .contact-block {
+                padding: 1rem;
+                border-radius: 16px;
+            }
+            
+            /* Smaller Text inside blocks */
+            .address-block p, .contact-block p {
+                font-size: 0.85rem; 
+                gap: 8px;
+            }
+
+            /* Shrink small outline button */
+            .btn-outline-call {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.8rem;
+            }
+            
+            /* Footer padding tweaks for mobile */
+            footer {
+                padding: 2rem 0 1rem;
+                margin-top: 2rem;
+            }
+            .footer-content {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -315,7 +385,6 @@
                 <a href="products.html">Products</a>
                 <a href="gallery.html">Gallery</a>
                 <a href="contact.html">Contact</a>
-                <a href="dealer.html">Dealer Zone</a>
             </nav>
         </div>
     </header>
@@ -340,15 +409,13 @@
                     <div class="contact-block">
                         <p><i class="fas fa-phone-alt"></i> <strong>Sales Helpline:</strong> 
                             <a href="tel:+919274841181">+91 92748 41181</a> 
-                            <a href="tel:+919974831383 " style="margin-left: 8px;">+91 997 483 1383</a>
+                            <a href="tel:+919974831383" style="margin-left: 8px;">+91 997 483 1383</a>
                         </p>
                         <p><i class="fas fa-envelope"></i> <strong>Email:</strong> 
                             <a href="mailto:starpainttexture@gmail.com">starpainttexture@gmail.com</a> 
-                            <span> / </span>
-                            <a href="mailto:sales@starpaints.in">sales@starpaints.in</a>
                         </p>
-                        <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> 
-                            <a href="https://wa.me/919274841181" target="_blank">+91 92748 41181 (Click to chat)</a>
+                        <p><i class="fas fa-phone"></i> <strong>Call:</strong> 
+                            <a href="tel:+919274841181">+91 92748 41181</a>
                         </p>
                         <a href="tel:+919274841181" class="btn-outline-call"><i class="fas fa-phone"></i> Direct Call</a>
                     </div>
