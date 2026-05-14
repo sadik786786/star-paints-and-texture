@@ -389,7 +389,7 @@
                 <a href="contact.html">Contact</a>
             </div>
             <div class="footer-contact">
-                    <a href="tel:+919974831383"><p><i class="fas fa-phone-alt"></i> +91 997 483 1383 </p></a>
+                    <a href="tel:+919327941181"><p><i class="fas fa-phone-alt"></i> +91 932 794 1181 </p></a>
                     <a href="mailto:starpainttexture@gmail.com"><p><i class="fas fa-envelope"></i> starpainttexture@gmail.com</p></a>
                     <a href="https://maps.google.com/?q=K.B.+Logistics+Gadh,+Road+Chadotar,+Palanpur,+Gujarat" target="_blank">
                         <p><i class="fas fa-map-marker-alt"></i>  K.B. Logistics Gadh, Road Chadotar, Palanpur, Gujarat</p>
@@ -547,7 +547,6 @@
                     <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/e8e0d0/664422?text=${p.name.replace(/ /g,'+')}'">
                     <div class="product-info">
                         <h3>${p.name}</h3>
-                        <p class="product-code">${p.productCode}</p>
                         <p>${p.shortDesc.substring(0, 70)}...</p>
                         <div class="card-hover-btn">View Details →</div>
                     </div>
@@ -588,7 +587,7 @@
             modalBody.innerHTML = `
                 <img src="${product.img}" alt="${product.name}" onerror="this.src='https://placehold.co/800x400/e8e0d0/664422?text=${product.name}'">
                 <h2>${product.name}</h2>
-                <div class="modal-code">📦 ${product.productCode} | ${product.category}</div>
+                <div class="modal-code"> ${product.category}</div>
                 <p class="modal-desc">${product.fullDesc}</p>
                 <div class="detail-section"><h4>🔧 Key Features</h4>${featuresHtml}</div>
                 <div class="detail-section"><h4>🏗️ Suitable Surfaces</h4>${surfacesHtml}</div>
