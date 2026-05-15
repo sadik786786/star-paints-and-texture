@@ -61,11 +61,13 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
             gap: 16px;
-            margin: 30px 0;
+            margin: 10px 0;
+            margin-left: 120px;
         }
         .product-badge {
             background: #fef4e8;
             padding: 12px 16px;
+            margin-left: 20px;
             border-radius: 40px;
             font-weight: 600;
             text-align: center;
@@ -86,6 +88,320 @@
         .about-hero h1, .about-hero p {
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
+        /* original flex layout enhanced */
+    .company-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .company-info {
+      flex: 1.5;
+      min-width: 240px;
+    }
+
+    .company-info p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #1e2f3e;
+      margin-bottom: 1rem;
+    }
+
+    .company-info strong {
+      color: #c2410c;
+    }
+
+    /* product badge list */
+    .product-badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .product-badge-list a {
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+
+    .product-badge-list a:hover {
+      transform: translateY(-3px);
+    }
+
+    .product-badge {
+      background: linear-gradient(135deg, #fff6e8 0%, #ffe6d5 100%);
+      color: #b45309;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 60px;
+      display: inline-block;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 140, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .product-badge:hover {
+      background: linear-gradient(135deg, #ffedd5, #ffdec2);
+      box-shadow: 0 8px 18px rgba(180, 83, 9, 0.15);
+      border-color: #f97316;
+      color: #9a3412;
+    }
+
+    /* decorative extra touch */
+    .stats-badge {
+      margin-top: 24px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: #2c6e49;
+      background: #ecfdf5;
+      padding: 12px 20px;
+      border-radius: 60px;
+      width: fit-content;
+    }
+
+    /* ---------- MODAL OVERLAY (detail block) ---------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.25s ease;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* modal container */
+    .modal-container {
+      background: #ffffff;
+      max-width: 1000px;
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    /* modal header */
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.8rem;
+      border-bottom: 1px solid #eef2f6;
+      background: #fffaf5;
+    }
+
+    .modal-header h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #b45309, #ea580c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .close-modal {
+      background: #f1f5f9;
+      border: none;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      color: #475569;
+    }
+
+    .close-modal:hover {
+      background: #fee2e2;
+      color: #b91c1c;
+      transform: rotate(90deg);
+    }
+
+    /* modal body (flex for image + details) */
+    .modal-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      padding: 2rem 1.8rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-image {
+      flex: 1;
+      min-width: 200px;
+      background: #fef9f0;
+      border-radius: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 1.2rem;
+      transition: 0.2s;
+    }
+
+    .modal-details {
+      flex: 1.4;
+      min-width: 240px;
+    }
+
+    .product-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.75rem;
+      border-left: 5px solid #f97316;
+      padding-left: 1rem;
+    }
+
+    .product-desc {
+      color: #334155;
+      line-height: 1.5;
+      margin: 1rem 0 10px 0;
+      font-size: 1rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: #2c3e50;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      background: #f97316;
+      color: white;
+      font-weight: bold;
+      width: 22px;
+      height: 22px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .spec-badge {
+      background: #fef3c7;
+      display: inline-block;
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #b45309;
+      margin-top: 0.8rem;
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .tech-item {
+      background: #f1f5f9;
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: #1e293b;
+    }
+
+    @media (max-width: 680px) {
+      .modal-body {
+        flex-direction: column;
+      }
+      .modal-header h3 {
+        font-size: 1.3rem;
+      }
+      .product-title {
+        font-size: 1.5rem;
+      }
+      .page-container {
+        padding: 1rem;
+      }
+      .intro-card {
+        padding: 1.3rem;
+      }
+      .company-flex {
+        gap: 28px;
+      }
+      .product-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* subtle animation for modal */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* footer reference */
+    .footer-note {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5b6e8c;
+    }
     </style>
 </head>
 <body>
@@ -141,14 +457,14 @@
             <div style="flex: 1.5;">
                 <p style="font-size: 1.1rem; margin-bottom: 20px;">Star Paints & Texture is a dedicated <strong>manufacturer of high-performance wall finishes</strong>, including decorative textures, industrial primers, premium distemper, and exterior emulsions. Our products are designed for both interior and exterior applications, combining aesthetic appeal with long-lasting protection.</p>
                 <p>Our manufacturing facility spans over 50,000 sq.ft., equipped with automated production lines and a dedicated quality control lab. Every batch undergoes rigorous testing for weather resistance, adhesion, and color consistency.</p>
-                <div class="product-badge-list" style="margin-top: 30px;">
-                    <a href="products.html"><span class="product-badge">Wall Textures</span></a>
-                    <a href="products.html"><span class="product-badge">Paint Textures</span></a>
-                    <a href="products.html"><span class="product-badge">Primer</span></a>
-                    <a href="products.html"><span class="product-badge">Distemper</span></a>
-                    <a href="products.html"><span class="product-badge">Exterior Emulsion</span></a>
-                    <a href="products.html"><span class="product-badge">Waterproof Coatings</span></a>
-                </div>
+                <div class="product-badge-list">
+          <a href="#" data-product="Wall Textures"><span class="product-badge">Wall Textures</span></a>
+          <a href="#" data-product="Paint Textures"><span class="product-badge">Paint Textures</span></a>
+          <a href="#" data-product="Primer"><span class="product-badge">Primer</span></a>
+          <a href="#" data-product="Distemper"><span class="product-badge">Distemper</span></a>
+          <a href="#" data-product="Exterior Emulsion"><span class="product-badge">Exterior Emulsion</span></a>
+          <a href="#" data-product="Waterproof Coatings"><span class="product-badge">Waterproof Coatings</span></a>
+        </div>
             </div>
         </div>
 
@@ -220,27 +536,190 @@
         <div class="footer-bottom">© 2026 Star Paints & Texture — Decorative & Protective Wall Finishes | Leading Wall Texture Manufacturer</div>
     </div>
 </footer>
-
+<!-- MODAL OVERLAY (detail block) -->
+<div id="productModal" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 id="modalProductName">Product Details</h3>
+      <button class="close-modal" id="closeModalBtn" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image" id="modalImageContainer">
+        <img id="modalProductImage" alt="Product visual" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23fef3c7'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23b45309' font-size='20' font-family='system-ui'%3EProduct Image%3C/text%3E%3C/svg%3E">
+      </div>
+      <div class="modal-details">
+        <div class="product-title" id="modalDetailTitle">Premium Finish</div>
+        <div class="product-desc" id="modalDescription">
+          High-performance coating with superior adhesion and weather resistance.
+        </div>
+        <ul class="feature-list" id="modalFeatures">
+          <li>Outstanding durability</li>
+          <li>Eco-friendly formulation</li>
+        </ul>
+        <div id="modalTechSpecs" class="tech-row"></div>
+        <div class="spec-badge" id="modalExtraBadge">✔️ Best for professional use</div>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
-    // mobile menu toggle
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.getElementById('navLinks');
-    if(mobileBtn && navLinks) {
-        mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+    // ---------- PRODUCT DATABASE WITH YOUR REAL IMAGE PATHS ----------
+    // 👇 REPLACE the image paths below with your actual image file names
+    // (e.g., "img/wall-texture.jpg", "img/paint-texture.webp", etc.)
+    const productsLibrary = {
+        "Wall Textures": {
+            title: "Artisan Wall Textures",
+            description: "Create stunning dimensional walls with our high-build decorative texture. Hides imperfections, adds acoustic comfort, and provides a luxurious stone/plaster finish. Ideal for feature walls, lobbies, and modern interiors.",
+            features: ["Crack-bridging technology", "20+ patterns (suede, sand, leather)", "Breathable & moisture resistant", "Low odor, water-based", "Coverage: 25-35 sq.ft./kg"],
+            technical: ["Drying: 4-6 hrs", "Recoat: 12 hrs", "VOC < 20 g/L"],
+            badge: "🏆 Most versatile decor finish",
+            // 🔽 CHANGE THIS TO YOUR OWN IMAGE (e.g., "img/wall-texture.png")
+            imageSrc: "img/side wall.jpg"
+        },
+        "Paint Textures": {
+            title: "Chromatica Paint Textures",
+            description: "Artistic paint textures that transform walls into masterpieces. Create metallic, pearl, or rustic effects with easy one-coat application. Perfect for high-end residential & commercial spaces.",
+            features: ["Rich pigment dispersion", "Anti-microbial & washable", "UV stable for interiors", "Roller / trowel application", "Coverage: 80-100 sq.ft./litre"],
+            technical: ["Finish: Matte/Satin", "Touch dry: 2 hours", "Soap & water clean-up"],
+            badge: "🎨 Artist-grade pigmented textures",
+            imageSrc: "img/rustic.webp"
+        },
+        "Primer": {
+            title: "Ultra Grip Industrial Primer",
+            description: "High-performance universal primer for superior adhesion, alkali resistance, and sealing. Ideal for fresh plaster, concrete, and previously painted surfaces. Extends topcoat life.",
+            features: ["Deep penetration & pore sealing", "Blocks stains & efflorescence", "Low VOC & lead-free", "Quick drying: 30-45 min", "Coverage: 120-150 sq.ft./litre"],
+            technical: ["Compatible with all emulsions", "Anti-fungal additives", "ISO 12944"],
+            badge: "🔧 Professional primer for extreme bonding",
+            imageSrc: "img/primer.jpeg"
+        },
+        "Distemper": {
+            title: "SilkPro Premium Distemper",
+            description: "Premium synthetic distemper with smooth matte finish. Excellent opacity and scrub resistance. Provides elegant washable coating for ceilings and walls at economical pricing.",
+            features: ["Smooth, velvet-like finish", "Washable & dust repellent", "Economical coverage 180 sq.ft./kg", "Resists yellowing", "Easy application (brush/roller)"],
+            technical: ["Finish: Soft Matte", "Drying: 1-2 hours", "1500+ shades"],
+            badge: "🏠 Ideal for budget-friendly luxury",
+            imageSrc: "img/distemper.jpeg"
+        },
+        "Exterior Emulsion": {
+            title: "WeatherShield Exterior Emulsion",
+            description: "100% acrylic exterior emulsion designed to withstand harsh climates. Provides excellent UV resistance, rain protection, and color retention up to 8+ years. Anti-carbonation & algae resistant.",
+            features: ["Weatherproof & breathable", "Excellent chalking resistance", "Flexible film bridges cracks", "Heat reflective technology", "Coverage: 75-90 sq.ft./litre"],
+            technical: ["Application: spray/roller", "1hr surface dry", "Lifespan: 8-10 years"],
+            badge: "☀️ Extreme weather defense + UV guard",
+            imageSrc: "img/emulsion.jpeg"
+        },
+        "Waterproof Coatings": {
+            title: "AquaBlock Waterproof Coating",
+            description: "Elastomeric liquid membrane ideal for roofs, terraces, and external walls. Forms seamless, flexible waterproof layer that bridges dynamic cracks. Provides thermal insulation & corrosion protection.",
+            features: ["Elongation >300%", "Excellent ponding water resistance", "UV stable & crack-bridging", "Reflects solar heat", "Coverage: 25-30 sq.ft./kg"],
+            technical: ["Dry film thickness: 600 microns", "Recoat after 8hrs", "10-year warranty"],
+            badge: "💧 100% waterproofing guarantee • 10 years",
+            imageSrc: "img/pitti.jpg"
+        }
+    };
+
+    // DOM elements
+    const modalOverlay = document.getElementById('productModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalImg = document.getElementById('modalProductImage');
+    const modalDetailTitle = document.getElementById('modalDetailTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalFeaturesList = document.getElementById('modalFeatures');
+    const modalTechSpecs = document.getElementById('modalTechSpecs');
+    const modalExtraBadge = document.getElementById('modalExtraBadge');
+    const modalHeaderName = document.getElementById('modalProductName');
+
+    // Function to load image with fallback
+    function setModalImage(imagePath) {
+        if (!imagePath) {
+            modalImg.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23fef3c7'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%239a3412' font-size='18'%3ENo Image%3C/text%3E%3C/svg%3E";
+            return;
+        }
+        modalImg.src = imagePath;
+        modalImg.onerror = () => {
+            // if the image fails to load (file missing), show a friendly placeholder
+            modalImg.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23ffe6cc'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' fill='%239a3412' font-size='18'%3EImage not found%3C/text%3E%3C/svg%3E";
+        };
     }
-    function showToast(msg) {
-        const toast = document.getElementById('toastMsg');
-        if(toast) {
-            toast.textContent = msg;
-            toast.style.opacity = "1";
-            setTimeout(() => toast.style.opacity = "0", 2500);
+
+    function showProductDetails(productKey) {
+        const product = productsLibrary[productKey];
+        if (!product) return;
+        
+        modalHeaderName.innerText = product.title;
+        modalDetailTitle.innerText = product.title;
+        modalDescription.innerText = product.description;
+        
+        modalFeaturesList.innerHTML = '';
+        product.features.forEach(feat => {
+            const li = document.createElement('li');
+            li.textContent = feat;
+            modalFeaturesList.appendChild(li);
+        });
+        
+        modalTechSpecs.innerHTML = '';
+        product.technical.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-item';
+            span.textContent = tech;
+            modalTechSpecs.appendChild(span);
+        });
+        
+        modalExtraBadge.textContent = product.badge;
+        
+        // Set the real image (your file)
+        setModalImage(product.imageSrc);
+    }
+
+    function openModal(productName) {
+        if (productsLibrary[productName]) {
+            showProductDetails(productName);
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            console.warn("Product not found:", productName);
         }
     }
-    // simple product card click handlers already use location.href
-    // ensure any other buttons
-    const quoteBtns = document.querySelectorAll('.btn-primary');
-    if(quoteBtns.length) {
-        // just sample for sample request
+
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Attach click events to product badges
+    const badgeLinks = document.querySelectorAll('.product-badge-list a');
+    badgeLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            let productType = link.getAttribute('data-product');
+            if (!productType) {
+                const spanElem = link.querySelector('.product-badge');
+                if (spanElem) productType = spanElem.innerText.trim().replace(/[🏚️🎨🧱🖌️☀️💧]/g, '').trim();
+            }
+            if (productsLibrary[productType]) {
+                openModal(productType);
+            } else {
+                // fallback – try to match by removing icons
+                const cleanType = productType.replace(/[^a-zA-Z ]/g, '').trim();
+                if (productsLibrary[cleanType]) openModal(cleanType);
+                else openModal("Wall Textures");
+            }
+        });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+    });
+    
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinksElem = document.getElementById('navLinks');
+    if(mobileBtn && navLinksElem) {
+        mobileBtn.addEventListener('click', () => navLinksElem.classList.toggle('show'));
     }
 </script>
 </body>
