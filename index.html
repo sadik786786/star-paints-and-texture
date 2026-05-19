@@ -13,150 +13,6 @@
     <!-- Favicon (inline star) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c47a2e'%3E%3Cpath d='M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z'/%3E%3C/svg%3E">
     <style>
-  .hero {
-    position: relative;
-    overflow: hidden;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    /* remove any background-image from .hero in your current CSS */
-}
-
-.hero-video-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.358); /* adjust darkness */
-    z-index: 1;
-}
-
-.hero .container {
-    position: relative;
-    z-index: 2;
-}
-
-/* Ensure text stays readable */
-.hero-content h1,
-.hero-content p {
-    color: white;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-        /* ===== ADDITIONAL STYLES FOR NEW FUNCTIONALITIES (RESPONSIVE & EXPLORE BUTTON) ===== */
-        .explore-more-wrapper {
-            text-align: center;
-            margin: 2rem 0 1.5rem;
-        }
-        .explore-products-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2.2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            background: white;
-            color: #c47a2e;
-            border: 2px solid #c47a2e;
-            border-radius: 50px;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            letter-spacing: 0.3px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .explore-products-btn i {
-            transition: transform 0.2s;
-        }
-        .explore-products-btn:hover {
-            background: #c47a2e;
-            color: white;
-            border-color: #c47a2e;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(196,122,46,0.25);
-        }
-        .explore-products-btn:hover i {
-            transform: translateX(5px);
-        }
-        /* ensure product grid remains responsive and clean */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0 0.5rem;
-        }
-        /* optional: card touch-friendly + consistent image ratio */
-        .product-card {
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
-        }
-        .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
-        }
-        .product-card img {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s;
-        }
-        .product-card:hover img {
-            transform: scale(1.02);
-        }
-        .product-info {
-            padding: 1.2rem 1rem 1.4rem;
-        }
-        .product-info h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-        .product-info p {
-            color: #4b5563;
-            line-height: 1.4;
-            font-size: 0.9rem;
-        }
-        /* adjust spacing on mobile */
-        @media (max-width: 768px) {
-            .product-grid {
-                gap: 1.2rem;
-                margin: 1.5rem 0 0.2rem;
-            }
-            .explore-more-wrapper {
-                margin: 1.8rem 0 1rem;
-            }
-            .explore-products-btn {
-                padding: 0.7rem 1.8rem;
-                font-size: 0.9rem;
-            }
-            .product-info h3 {
-                font-size: 1.2rem;
-            }
-        }
-        /* extra micro fix for footer */
-        footer a {
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
@@ -177,15 +33,11 @@
     </header>
 
     <main>
-        <!-- HERO SECTION with video background -->
+        <!-- HERO SECTION with image background -->
         <section class="hero">
-            <div class="hero-video-wrapper">
-                <video poster="img/poster.png" class="hero-video" autoplay muted loop playsinline>
-                    <source src="img/17224715-uhd_3840_2160_30fps.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="hero-overlay"></div>
-            </div>
+            <!-- Overlay to ensure text readability -->
+            <div class="hero-overlay"></div>
+            
             <div class="container hero-grid">
                 <div class="hero-content">
                     <h1>Premium Wall Texture <br>Manufacturer</h1>
@@ -424,9 +276,6 @@
         // Render product cards on load
         renderHomeProducts();
 
-        // Extra: if any img error fallback for smoother experience (already inline onerror but safe)
-        // Also ensure product grid doesn't overflow and style remains.
     </script>
-    <!-- fallback: handle missing product detail page navigation gracefully (no error) -->
 </body>
 </html>

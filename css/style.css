@@ -196,16 +196,35 @@ h2 {
     }
 }
 
-/* ========== HERO SECTION (BIGGER & BOLDER) ========== */
+/* ========== HERO SECTION (IMAGE BG) ========== */
 .hero {
+    position: relative;
+    overflow: hidden;
     min-height: 85vh;
-    background-size: cover;
-    background-position: center 40%;
     display: flex;
     align-items: center;
-    padding: 0 0;
+    padding: 0;
     color: white;
+    /* Add your background image here */
+    background-image: url('../img/home.jpeg');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(55, 55, 55, 0.1); /* Adjust opacity to make text pop */
+    z-index: 1;
+}
+
+.hero .container {
     position: relative;
+    z-index: 2;
 }
 
 .hero-grid {
@@ -225,6 +244,11 @@ h2 {
     max-width: 620px;
     animation: fadeSlideUp 0.7s ease-out;
 }
+.hero-content h1,
+.hero-content p {
+    color: white;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
 .hero-content p {
     font-size: 1.25rem;
     margin: 24px 0 32px;
@@ -241,8 +265,6 @@ h2 {
 @media (max-width: 860px) {
     .hero { min-height: 70vh; }
     .hero-grid { flex-direction: column; gap: 40px; }
-    .hero-stats-card { width: 100%; margin-top: 20px; }
-    .stat-number { font-size: 2rem; }
 }
 
 /* ========== CONTAINER & ALTERNATING SECTIONS ========== */
@@ -519,4 +541,103 @@ body::before {
     z-index: -1;
     background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
     background-size: 24px 24px;
+}
+
+/* ===== ADDITIONAL STYLES FOR NEW FUNCTIONALITIES (RESPONSIVE & EXPLORE BUTTON) ===== */
+.explore-more-wrapper {
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+}
+.explore-products-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: white;
+    color: #c47a2e;
+    border: 2px solid #c47a2e;
+    border-radius: 50px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.explore-products-btn i {
+    transition: transform 0.2s;
+}
+.explore-products-btn:hover {
+    background: #c47a2e;
+    color: white;
+    border-color: #c47a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(196,122,46,0.25);
+}
+.explore-products-btn:hover i {
+    transform: translateX(5px);
+}
+/* ensure product grid remains responsive and clean */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0 0.5rem;
+}
+/* optional: card touch-friendly + consistent image ratio */
+.product-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+}
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+}
+.product-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+.product-card:hover img {
+    transform: scale(1.02);
+}
+.product-info {
+    padding: 1.2rem 1rem 1.4rem;
+}
+.product-info h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+.product-info p {
+    color: #4b5563;
+    line-height: 1.4;
+    font-size: 0.9rem;
+}
+/* adjust spacing on mobile */
+@media (max-width: 768px) {
+    .product-grid {
+        gap: 1.2rem;
+        margin: 1.5rem 0 0.2rem;
+    }
+    .explore-more-wrapper {
+        margin: 1.8rem 0 1rem;
+    }
+    .explore-products-btn {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
+    }
+    .product-info h3 {
+        font-size: 1.2rem;
+    }
+}
+/* extra micro fix for footer */
+footer a {
+    text-decoration: none;
 }
