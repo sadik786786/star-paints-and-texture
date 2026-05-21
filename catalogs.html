@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Star Paints & Texture | Cinematic Product Catalog</title>
+    <meta name="description" content="Experience our premium wall textures & coatings with immersive cinematic scroll. Parallax, inertia scrolling, and smooth transitions for a sophisticated catalog.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- GSAP & ScrollTrigger & Lenis Smooth Scroll -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c47a2e'%3E%3Cpath d='M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z'/%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf7;
+            color: #2c2418;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        /* Main catalog layout */
+        .catalog-page {
+            overflow-x: hidden;
+            margin-top: 70px; /* offset fixed header */
+        }
+        .catalog-hero {
+            text-align: center;
+            padding: 2rem 1.2rem 3rem;
+            background: linear-gradient(145deg, #fef7ef 0%, #fffcf5 100%);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        .catalog-hero h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #2c2418;
+            letter-spacing: -0.02em;
+        }
+        .catalog-hero h1 span {
+            color: #c47a2e;
+        }
+        .catalog-hero p {
+            font-size: 1rem;
+            color: #6b5a48;
+            max-width: 500px;
+            margin: 0.8rem auto 0;
+            padding: 0 0.5rem;
+        }
+
+        /* Sticky sections container */
+        .sticky-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 1.2rem;
+        }
+        .product-sticky-section {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .cinematic-card {
+            background: #ffffff;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s ease;
+            will-change: transform;
+            width: 100%;
+        }
+        .cinematic-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 28px 40px -14px rgba(0, 0, 0, 0.2);
+        }
+        .card-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            align-items: center;
+            padding: 2rem;
+        }
+        /* text styles */
+        .catalog-text {
+            opacity: 0;
+            transform: translateY(30px);
+            will-change: transform, opacity;
+        }
+        .product-category {
+            display: inline-block;
+            background: #f0e9de;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: #a55d1a;
+            margin-bottom: 0.8rem;
+        }
+        .catalog-text h2 {
+            font-size: 1.8rem;
+            color: #c47a2e;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .product-code {
+            font-size: 0.7rem;
+            color: #8b7a66;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        .full-description {
+            color: #4a3e2f;
+            margin: 0.8rem 0 1rem;
+            line-height: 1.45;
+            font-size: 0.9rem;
+        }
+        .feature-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .feature-badges span {
+            background: #f4efe6;
+            padding: 0.25rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .rec-tag {
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #c47a2e;
+            border-left: 3px solid #c47a2e;
+            padding-left: 0.7rem;
+        }
+        .catalog-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.2rem;
+            background: none;
+            border: 2px solid #c47a2e;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #c47a2e;
+            transition: 0.25s;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.8rem;
+            background-color: transparent;
+        }
+        .catalog-cta:hover {
+            background: #c47a2e;
+            color: white;
+        }
+        /* image container with parallax effect */
+        .image-parallax-wrapper {
+            overflow: hidden;
+            border-radius: 28px;
+            height: 320px;
+            position: relative;
+            box-shadow: 0 15px 25px -10px rgba(0,0,0,0.15);
+        }
+        .parallax-img {
+            width: 100%;
+            height: 125%;
+            object-fit: cover;
+            will-change: transform;
+            display: block;
+            transform: translateY(0%);
+        }
+
+        /* ----- ENHANCED MOBILE RESPONSIVE STRUCTURE ----- */
+        @media (max-width: 900px) {
+            .card-inner {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            .image-parallax-wrapper {
+                height: 280px;
+            }
+            .catalog-text h2 {
+                font-size: 1.7rem;
+            }
+            .sticky-container {
+                padding: 0 1rem;
+            }
+            .catalog-hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .catalog-page {
+                margin-top: 60px;
+            }
+            .catalog-hero {
+                padding: 1.5rem 1rem 2.5rem;
+            }
+            .catalog-hero h1 {
+                font-size: 1.8rem;
+            }
+            .catalog-hero p {
+                font-size: 0.9rem;
+            }
+            .sticky-container {
+                padding: 0 0.8rem;
+            }
+            .cinematic-card {
+                border-radius: 28px;
+            }
+            .card-inner {
+                padding: 1.2rem;
+                gap: 1.2rem;
+            }
+            .catalog-text h2 {
+                font-size: 1.5rem;
+            }
+            .full-description {
+                font-size: 0.85rem;
+            }
+            .feature-badges span {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.7rem;
+            }
+            .rec-tag {
+                font-size: 0.75rem;
+            }
+            .catalog-cta {
+                padding: 0.45rem 1.2rem;
+                font-size: 0.75rem;
+                margin-top: 1rem;
+            }
+            .image-parallax-wrapper {
+                height: 240px;
+                border-radius: 24px;
+            }
+            .product-category {
+                font-size: 0.65rem;
+            }
+            .product-code {
+                font-size: 0.65rem;
+            }
+            /* adjust sticky pinning spacing for mobile */
+            .product-sticky-section {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-parallax-wrapper {
+                height: 210px;
+            }
+            .card-inner {
+                padding: 1rem;
+            }
+            .catalog-text h2 {
+                font-size: 1.35rem;
+            }
+            .feature-badges {
+                gap: 0.4rem;
+            }
+        }
+        .pdf-notify {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44,36,24,0.95);
+            color: #f5e2c2;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.25s;
+            z-index: 1000;
+            pointer-events: none;
+            backdrop-filter: blur(8px);
+            white-space: nowrap;
+        }
+        @media (max-width: 500px) {
+            .pdf-notify {
+                white-space: normal;
+                text-align: center;
+                width: 90%;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html"><img class="logo-img" src="img/logo.png" alt="Star Paints Logo"></a>
+        </div>
+        <div class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="catalogs.html" class="active">Catalogs</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="catalog-page">
+    <div class="catalog-hero">
+        <h1>Explore the <span>Cinematic Catalog</span></h1>
+        <p>Smooth inertia scrolling • Sticky panels • Parallax imagery • Fluid reveals</p>
+    </div>
+
+    <div class="sticky-container" id="stickyContainer">
+        <!-- dynamic product sections -->
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <img class="footer-logo" src="img/logo.png" alt="Star Paints">
+            <p>Premium wall textures & protective coatings.<br>Crafted for excellence.</p>
+        </div>
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="catalogs.html">Catalogs</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-contact">
+            <a href="tel:+919327941181"><p><i class="fas fa-phone-alt"></i> +91 932 794 1181</p></a>
+            <a href="mailto:starpainttexture@gmail.com"><p><i class="fas fa-envelope"></i> starpainttexture@gmail.com</p></a>
+            <a href="https://maps.google.com/?q=K.B.+Logistics+Gadh,+Road+Chadotar,+Palanpur,+Gujarat" target="_blank">
+                <p><i class="fas fa-map-marker-alt"></i> K.B. Logistics Gadh, Road Chadotar, Palanpur, Gujarat</p>
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Star Paints & Texture — Decorative & Protective Wall Finishes | Leading Wall Texture Manufacturer</div>
+</footer>
+
+<div id="pdfNotify" class="pdf-notify">📄 Opening catalog...</div>
+
+<script>
+    // PRODUCT DATABASE
+    const productsList = [
+        {
+            id: 1, name: "Rustic Texture", category: "Exterior Texture", productCode: "SPT-1001",
+            fullDesc: "A durable textured finish made using advanced acrylic modified resin. Engineered for Indian exteriors, it offers superior protection against UV, rain, and thermal variations while allowing trapped moisture to escape.",
+            features: ["Hides cracks", "Low maintenance", "UV resistant", "Fungus resistant"],
+            recommendedFor: "Villas, Hotels, Commercial complexes, Stadiums",
+            img: "img/rustic.webp", pdfUrl: "pdfs/catalog_SPT-1001.pdf"
+        },
+        {
+            id: 2, name: "Dholpuri Texture", category: "Antique Finish", productCode: "SPT-1002",
+            fullDesc: "Achieve a majestic antique stone look with Dholpuri Texture. Ideal for prestigious buildings, this finish replicates natural stone and rough-cast effects with crack-hiding properties.",
+            features: ["Antique stone look", "Crack hiding", "UV resistance", "Long durability"],
+            recommendedFor: "Hotels, Museums, Heritage buildings, Villas",
+            img: "img/dholpur-texture-500x500.webp", pdfUrl: "pdfs/catalog_SPT-1002.pdf"
+        },
+        {
+            id: 3, name: "Roller Coat Texture", category: "Silicone Acrylic", productCode: "SPT-1003",
+            fullDesc: "High-performance silicone acrylic coating that provides climatic resistance, mold protection, and energy-saving properties. Odorless, non-flammable and eco-friendly.",
+            features: ["Climatic resistance", "Mold protection", "Energy-saving", "Odorless"],
+            recommendedFor: "Commercial complexes, Offices, Hospitals",
+            img: "img/Rollercoat.webp", pdfUrl: "pdfs/catalog_SPT-1003.pdf"
+        },
+        {
+            id: 4, name: "Granules Texture", category: "Decorative Granular", productCode: "SPT-1027",
+            fullDesc: "Modern decorative granular wall finish that delivers a premium rugged appearance. Excellent adhesion, weather resistance, and easy application for feature walls.",
+            features: ["Strong adhesion", "Crack resistant", "Weather resistant", "Premium look"],
+            recommendedFor: "Living rooms, Lobbies, Showrooms",
+            img: "img/granule.jpeg", pdfUrl: "pdfs/catalog_SPT-1027.pdf"
+        },
+        {
+            id: 5, name: "Water-Based Primer", category: "Primer", productCode: "SPT-1005",
+            fullDesc: "High-bonding water-based acrylic primer that prepares surfaces for textured coatings, ensuring long-lasting finish and better coverage.",
+            features: ["Strong adhesion", "Better coverage", "Smooth base", "Long-lasting"],
+            recommendedFor: "Before applying any texture / paint",
+            img: "img/primer.jpeg", pdfUrl: "pdfs/catalog_SPT-1005.pdf"
+        },
+        {
+            id: 6, name: "Acrylic Distemper", category: "Distemper", productCode: "SPT-1006",
+            fullDesc: "Premium water-based coating for interior masonry surfaces. Smooth, durable matte finish, easy application and excellent coverage.",
+            features: ["Smooth matte finish", "Easy to apply", "Good coverage", "Quick drying"],
+            recommendedFor: "Interior walls and ceilings in homes, offices, rental spaces",
+            img: "img/distemper.jpeg", pdfUrl: "pdfs/catalog_SPT-1006.pdf"
+        },
+        {
+            id: 7, name: "Exterior Emulsion", category: "Exterior Paint", productCode: "SPT-1007",
+            fullDesc: "Advanced exterior paint offering unmatched weather resistance, UV protection, and fade resistance. Protects against cracking and mildew.",
+            features: ["Weather resistance", "UV protection", "Fade resistant", "Mildew resistant"],
+            recommendedFor: "Houses, Fences, Gates, Outdoor structures",
+            img: "img/emulsion.jpeg", pdfUrl: "pdfs/catalog_SPT-1007.pdf"
+        }
+    ];
+
+    function showNotify(message, isError = false) {
+        const notify = document.getElementById('pdfNotify');
+        if (!notify) return;
+        notify.textContent = message;
+        notify.style.backgroundColor = isError ? 'rgba(180, 70, 50, 0.95)' : 'rgba(44, 36, 24, 0.95)';
+        notify.style.opacity = '1';
+        setTimeout(() => { notify.style.opacity = '0'; }, 2500);
+    }
+
+    function openProductCatalog(product) {
+        if (!product || !product.pdfUrl) {
+            showNotify("⚠️ Catalog not available for this product.", true);
+            return;
+        }
+        const pdfWindow = window.open(product.pdfUrl, '_blank');
+        if (!pdfWindow || pdfWindow.closed || typeof pdfWindow.closed === 'undefined') {
+            showNotify("⚠️ Popup blocked. Please allow popups.", true);
+        } else {
+            showNotify(`📖 Opening: ${product.name}`);
+        }
+    }
+
+    function renderStickyCatalog() {
+        const container = document.getElementById('stickyContainer');
+        if (!container) return;
+        let html = '';
+        productsList.forEach(prod => {
+            const topFeatures = prod.features.slice(0, 4);
+            html += `
+                <div class="product-sticky-section" data-product-id="${prod.id}">
+                    <div class="cinematic-card">
+                        <div class="card-inner">
+                            <div class="catalog-text">
+                                <div class="product-category">${prod.category}</div>
+                                <h2>${prod.name}</h2>
+                                <p class="full-description">${prod.fullDesc}</p>
+                                <div class="feature-badges">
+                                    ${topFeatures.map(f => `<span><i class="fas fa-check" style="font-size:0.65rem; color:#c47a2e;"></i> ${f}</span>`).join('')}
+                                </div>
+                                <div class="rec-tag"><i class="fas fa-building"></i> Best for: ${prod.recommendedFor}</div>
+                                <button class="catalog-cta view-catalog-btn" data-product-id="${prod.id}">
+                                    <i class="fas fa-file-pdf"></i> View Catalogue
+                                </button>
+                            </div>
+                            <div class="image-parallax-wrapper">
+                                <img class="parallax-img" src="${prod.img}" alt="${prod.name}" loading="lazy" onerror="this.src='https://placehold.co/800x600/e8e0d0/664422?text=${prod.name.replace(/ /g,'+')}'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    // Initialize Lenis + GSAP ScrollTrigger with responsive pin adjustments
+    function initCinematicScroll() {
+        const lenis = new Lenis({
+            duration: 1.1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.9,
+            touchMultiplier: 1.2,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+        gsap.registerPlugin(ScrollTrigger);
+
+        setTimeout(() => {
+            const sections = document.querySelectorAll('.product-sticky-section');
+            if (!sections.length) return;
+
+            // Determine if mobile for shorter pin distance
+            const isMobile = window.innerWidth <= 768;
+            const pinDistance = isMobile ? "+=60%" : "+=80%";
+            const parallaxAmount = isMobile ? -10 : -18;
+            const scrubIntensity = isMobile ? 0.8 : 1.2;
+
+            sections.forEach((section, idx) => {
+                const textBlock = section.querySelector('.catalog-text');
+                const imgWrap = section.querySelector('.parallax-img');
+                if (!textBlock || !imgWrap) return;
+
+                gsap.set(textBlock, { opacity: 0, y: 40 });
+                gsap.set(imgWrap, { y: 0 });
+
+                // Sticky pinning
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top top",
+                    end: pinDistance,
+                    pin: true,
+                    pinSpacing: true,
+                    anticipatePin: 1,
+                    id: `pin-${idx}`
+                });
+
+                // Parallax image movement
+                gsap.to(imgWrap, {
+                    yPercent: parallaxAmount,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top top",
+                        end: pinDistance,
+                        scrub: scrubIntensity,
+                        invalidateOnRefresh: true
+                    }
+                });
+
+                // Text fade upward cinematic reveal
+                gsap.to(textBlock, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.9,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "+=40%",
+                        scrub: 0.7,
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                // Shadow dynamics on card
+                const card = section.querySelector('.cinematic-card');
+                if (card) {
+                    gsap.fromTo(card,
+                        { boxShadow: "0 15px 30px -10px rgba(0,0,0,0.08)" },
+                        {
+                            boxShadow: "0 30px 45px -15px rgba(0,0,0,0.2)",
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top bottom",
+                                end: "bottom top",
+                                scrub: 0.5,
+                            }
+                        }
+                    );
+                }
+            });
+
+            // Hero subtle fade on scroll (mobile-friendly)
+            gsap.to('.catalog-hero', {
+                opacity: 0.7,
+                scrollTrigger: {
+                    trigger: '.sticky-container',
+                    start: "top 100px",
+                    end: "top -60px",
+                    scrub: 0.7,
+                }
+            });
+
+            window.addEventListener('load', () => {
+                ScrollTrigger.refresh();
+                lenis.resize();
+            });
+            ScrollTrigger.refresh();
+        }, 100);
+    }
+
+    function initMobileMenu() {
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => navLinks.classList.toggle('show'));
+        }
+    }
+
+    function initCatalogButtons() {
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.view-catalog-btn');
+            if (!btn) return;
+            e.preventDefault();
+            const prodId = btn.getAttribute('data-product-id');
+            if (!prodId) return;
+            const product = productsList.find(p => p.id === parseInt(prodId));
+            if (product) openProductCatalog(product);
+            else showNotify("Product not found", true);
+        });
+    }
+
+    // Smart header hide/show on scroll (works on mobile)
+    let lastScroll = 0;
+    const header = document.querySelector('.main-header');
+    function handleHeaderOnScroll() {
+        if (!header) return;
+        const currentScroll = window.scrollY;
+        if (currentScroll > lastScroll && currentScroll > 120) {
+            header.style.transform = "translateY(-100%)";
+        } else {
+            header.style.transform = "translateY(0)";
+        }
+        lastScroll = currentScroll;
+    }
+    window.addEventListener('scroll', handleHeaderOnScroll);
+
+    function run() {
+        renderStickyCatalog();
+        initMobileMenu();
+        initCatalogButtons();
+        setTimeout(() => {
+            initCinematicScroll();
+        }, 80);
+        // Re-run on resize to adjust pin distance
+        window.addEventListener('resize', () => {
+            ScrollTrigger.refresh();
+        });
+    }
+    run();
+</script>
+</body>
+</html>
