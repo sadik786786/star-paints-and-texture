@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     background: #fcf8f3;  /* warm base */
     color: #2c2418;
     line-height: 1.5;
@@ -171,6 +171,7 @@ h2 {
 }
 .nav-links a:hover {
     color: var(--primary);
+    font-size: 1rem;
 }
 .mobile-menu {
     display: none;
