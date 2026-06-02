@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Star Paints & Texture | India's No.1 Premium Wall Texture Manufacturer | ISO 9001:2015</title>
     <meta name="description" content="Star Paints & Texture – ISO 9001:2015 certified premium wall texture manufacturer in India. Waterproof coatings, designer finishes, acrylic textures, and decorative plasters. 1500+ projects since 2014.">
-    <meta name="keywords" content="star paints and texture ,star and paint ,best wall texture paints India,star,texture,wall,star and texture, wall texture manufacturer, premium wall paints, decorative wall finishes, waterproof coating, texture paint India, star paints, star paints and texture, designer wall texture, acrylic texture, sand finish paint, exterior texture, interior designer finishes">
+
+    <meta name="keywords" content="wall texture manufacturer, decorative wall finishes, waterproof coatings, texture paint India">
     <meta name="author" content="Star Paints & Texture">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="revisit-after" content="7 days">
@@ -19,10 +20,12 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://www.starpaintsandtexture.in/">
     <meta property="og:title" content="Star Paints & Texture | Premium Wall Texture Manufacturer India">
     <meta property="og:description" content="India's trusted ISO 9001:2015 certified manufacturer of premium wall textures, waterproof coatings & decorative finishes. Get free consultation & samples.">
-    <meta property="og:image" content="img/poster.png">
+    <meta property="og:image" content="https://www.starpaintsandtexture.in/img/poster.png">
     <meta property="og:image:alt" content="Star Paints & Texture - Premium Wall Texture Collection Showcase">
     <meta property="og:site_name" content="Star Paints & Texture">
     <meta property="og:locale" content="en_IN">
@@ -31,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Star Paints & Texture | India's Leading Wall Texture Manufacturer">
     <meta name="twitter:description" content="Premium wall textures, waterproof coatings & decorative finishes. ISO certified, made in India. Request a quote!">
-    <meta name="twitter:image" content="img/poster.png">
+    <meta name="twitter:image" content="https://www.starpaintsandtexture.in/img/poster.png">
 
     <!-- Theme Color & Icons -->
     <meta name="theme-color" content="#c47a2e">
@@ -87,7 +90,7 @@
           "@type": "LocalBusiness",
           "@id": "https://www.starpaintsandtexture.in/#business",
           "name": "Star Paints & Texture",
-          "image": "https://placehold.co/800x400/2c3e50/white?text=Star+Paints+Manufacturing",
+          "image": "https://www.starpaintsandtexture.in/img/poster.png",
           "priceRange": "₹₹ (₹200 - ₹2000/sq ft)",
           "telephone": "+919327941181",
           "email": "starpainttexture@gmail.com",
@@ -107,7 +110,7 @@
           "@type": "Product",
           "@id": "https://www.starpaintsandtexture.in/products#premium-wall-texture",
           "name": "Premium Designer Wall Texture",
-          "image": "img/poster.png",
+          "image": "https://www.starpaintsandtexture.in/img/poster.png",
           "description": "High-quality acrylic-based wall texture with superior crack resistance, elegant matte finish and water repellent properties. Ideal for luxury homes, hotels and offices.",
           "brand": { "@type": "Brand", "name": "Star Paints & Texture" },
           "offers": {
@@ -298,6 +301,100 @@
         footer a {
             text-decoration: none;
         }
+        /* Base styling for the SEO content section */
+.seo-content {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #fef9f0 0%, #fffaf5 100%);
+    border-radius: 32px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 215, 175, 0.3) inset;
+    font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.seo-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 40px -14px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading style */
+.seo-content h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c3e2f;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.3px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Decorative underline for h2 */
+.seo-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, #e3a56d, #c97e3a);
+    border-radius: 4px;
+}
+
+/* Paragraph styling */
+.seo-content p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #3e3a35;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+}
+
+.seo-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* First paragraph emphasis (optional – shows key brand statement) */
+.seo-content p:first-of-type {
+    font-weight: 500;
+    color: #2c3e2f;
+    border-left: 4px solid #e3a56d;
+    padding-left: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .seo-content {
+        margin: 2rem 1rem;
+        padding: 1.8rem;
+        border-radius: 24px;
+    }
+    
+    .seo-content h2 {
+        font-size: 1.7rem;
+    }
+    
+    .seo-content h2::after {
+        width: 50px;
+        height: 3px;
+    }
+    
+    .seo-content p {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+}
+
+@media (max-width: 480px) {
+    .seo-content {
+        padding: 1.4rem;
+    }
+    
+    .seo-content h2 {
+        font-size: 1.4rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -338,8 +435,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-
+</section>
         <!-- PRODUCT PREVIEW SECTION -->
         <div class="container">
             <div class="section-title">
@@ -354,8 +450,7 @@
                 <a href="products.html" class="explore-products-btn">
                     Explore More Products <i class="fas fa-arrow-right"></i>
                 </a>
-            </div>
-
+    </div>
             <div class="usp-section">
                 <div class="usp-card">
                     <i class="fas fa-sun"></i>
@@ -380,7 +475,20 @@
             </div>
         </div>
     </main>
+    <section class="seo-content">
+    <h2>Leading Wall Texture Manufacturer in India</h2>
 
+    <p>
+        Star Paints & Texture is an ISO 9001:2015 certified manufacturer of decorative wall textures, waterproof coatings, acrylic finishes, sand textures, and premium exterior wall coatings. Since 2014, we have been delivering high-quality wall finishing solutions for residential, commercial, hospitality, and industrial projects across India.
+    </p>
+
+    <p>
+        Our product range includes Rustic Texture, Dholpuri Texture, Roller Coat Texture, Granules Texture, and advanced waterproof coatings. These products are designed to provide superior weather resistance, crack protection, UV stability, and long-lasting aesthetic appeal for modern buildings.
+    </p>
+
+    <p>
+        Architects, builders, contractors, and homeowners trust Star Paints & Texture for innovative decorative finishes that combine beauty with durability. Our commitment to quality, customer satisfaction, and continuous product innovation has helped us complete thousands of successful projects throughout India.
+    </p></section>
     <footer>
         <div class="container">
             <div class="footer-content">
